@@ -204,20 +204,21 @@ function initForm() {
     hideMessages();
 
     try {
-      const res = await fetch(WEBHOOK_URL, {
+      // Using no-cors because the n8n webhook is on a different domain.
+      // In no-cors mode the browser sends the request but returns an opaque
+      // response (we can't read status), so we treat any completed fetch as success.
+      await fetch(WEBHOOK_URL, {
         method : "POST",
+        mode   : "no-cors",
         headers: { "Content-Type": "application/json" },
         body   : JSON.stringify(payload),
       });
 
-      if (res.ok) {
-        showSuccess();
-        form.reset();
-        // Scroll to success message
-        successBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
-      } else {
-        throw new Error(`HTTP ${res.status}`);
-      }
+      // If fetch didn't throw, the request was sent — show success
+      showSuccess();
+      form.reset();
+      successBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+
     } catch (err) {
       console.error("Form submission error:", err);
       showError();
