@@ -12,7 +12,7 @@
    👉 Replace the URL below with your actual n8n webhook URL
    Example: "https://your-n8n.domain.com/webhook/whl-consultation"
 ────────────────────────────────────────────────────────────────── */
-const WEBHOOK_URL = "https://n8n-fbxjjcbhs0zxqmlcspfp3wwr.68.183.150.130.sslip.io/webhook-test/landing-page-form";
+const WEBHOOK_URL = "https://n8n-fbxjjcbhs0zxqmlcspfp3wwr.68.183.150.130.sslip.io/webhook/landing-page-form";
 
 
 /* ══════════════════════════════════════════
